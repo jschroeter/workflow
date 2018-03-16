@@ -92,6 +92,10 @@ class App extends React.Component {
               <strong>Delete</strong>: Select nodes and hit 'delete' on your
               keyboard
             </li>
+            <li>
+              <strong>Collaborate</strong>: Open this app in multiple
+              browsers/tabs
+            </li>
           </ul>
         </div>
       </div>
