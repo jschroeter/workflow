@@ -21,7 +21,8 @@
     "prefer-for-of": false,
     "no-empty-interface": false,
     "arrow-parens": false,
-    "semicolon": [true, "always", "ignore-bound-class-methods"]
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "no-console": false
   },
   "rulesDirectory": []
 }
