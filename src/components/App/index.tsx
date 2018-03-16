@@ -29,6 +29,20 @@ class App extends React.Component {
       .on('connectedUsers', connectedUsers => {
         this.setState({ connectedUsers });
       });
+
+    // TODO very dirty hack to workaround missing events in storm-diagrams
+    if (window) {
+      window.addEventListener('mouseup', () => {
+        setTimeout(() => {
+          if (this.socket) {
+            const newData = this.state.engine
+              .getDiagramModel()
+              .serializeDiagram();
+            this.socket.emit('datachange', newData);
+          }
+        }, 1);
+      });
+    }
   }
 
   setDiagramModel(data) {
