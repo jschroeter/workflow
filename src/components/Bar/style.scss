@@ -9,6 +9,22 @@
   color: #ffd800;
 }
 
+.activeUsers {
+  list-style: none;
+  line-height: 110%;
+
+  & > li {
+    display: inline;
+    margin-right: 15px;
+    opacity: 0.5;
+    transition: opacity 0.5s ease-out;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
 [role='button'],
 input[type='submit'],
 input[type='reset'],

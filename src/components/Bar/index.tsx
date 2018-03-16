@@ -4,13 +4,15 @@ import { DiagramEngine, DiagramModel } from 'storm-react-diagrams';
 
 export interface BarProps {
   engine: DiagramEngine;
+  connectedUsers: Array<{ id: number; name: string; isActive: boolean }>;
 }
 
 export interface BarState {}
 
 export class Bar extends React.Component<BarProps, BarState> {
   public static defaultProps: BarProps = {
-    engine: null
+    engine: null,
+    connectedUsers: []
   };
 
   state = {
@@ -58,6 +60,13 @@ export class Bar extends React.Component<BarProps, BarState> {
   render() {
     return (
       <div className="bar">
+        <ul className="activeUsers">
+          {this.props.connectedUsers.map((user, index) => (
+            <li key={index} className={user.isActive ? 'active' : ''}>
+              👤 {user.name}
+            </li>
+          ))}
+        </ul>
         <button
           className="importexport-toggle"
           onClick={this.toggleImportExport}

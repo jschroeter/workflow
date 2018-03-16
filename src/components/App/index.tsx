@@ -9,7 +9,8 @@ class App extends React.Component {
   socket = null;
 
   state = {
-    engine: null
+    engine: null,
+    connectedUsers: []
   };
 
   /**
@@ -21,9 +22,13 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.socket = io('http://localhost:3001').on('datachange', data => {
-      this.setDiagramModel(data);
-    });
+    this.socket = io('http://localhost:3001')
+      .on('datachange', data => {
+        this.setDiagramModel(data);
+      })
+      .on('connectedUsers', connectedUsers => {
+        this.setState({ connectedUsers });
+      });
   }
 
   setDiagramModel(data) {
@@ -52,7 +57,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app" role="main">
-        <Bar engine={this.state.engine} />
+        <Bar
+          engine={this.state.engine}
+          connectedUsers={this.state.connectedUsers}
+        />
         <Diagram setEngine={this.setEngine} />
         <div className="instructions">
           <h2>Usage</h2>
