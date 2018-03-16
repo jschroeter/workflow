@@ -49,6 +49,8 @@ class App extends React.Component {
     const newModel = new DiagramModel();
     newModel.deSerializeDiagram(data, this.state.engine);
 
+    /*
+    // currently not needed because of hack
     newModel.addListener({
       nodesUpdated: () => {
         if (this.socket) {
@@ -63,6 +65,7 @@ class App extends React.Component {
         }
       }
     });
+    */
 
     this.state.engine.setDiagramModel(newModel);
     this.state.engine.repaintCanvas();
