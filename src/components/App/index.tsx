@@ -40,7 +40,7 @@ class App extends React.Component {
               .serializeDiagram();
             this.socket.emit('datachange', newData);
           }
-        }, 1);
+        }, 10);
       });
     }
   }
