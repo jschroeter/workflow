@@ -1,7 +1,7 @@
 {
   "name": "workflow",
   "version": "0.1.0",
-  "homepage": "https://hamsterbacke23.github.io/workflow",
+  "homepage": "https://jschroeter.github.io/workflow",
   "scripts": {
     "start-js": "react-scripts-ts start",
     "start": "npm-run-all -p watch-css start-js",

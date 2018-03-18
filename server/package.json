@@ -1,0 +1,13 @@
+{
+  "name": "workflow-websocket",
+  "version": "0.1.0",
+  "homepage": "https://jschroeter.github.io/workflow",
+  "scripts": {
+    "start": "node websocket.js"
+  },
+  "dependencies": {
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+  }
+}
