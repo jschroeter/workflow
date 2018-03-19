@@ -22,7 +22,11 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.socket = io('http://localhost:3001')
+    const host =
+      process.env.NODE_ENV === 'production'
+        ? 'https://workflow-websocket.sloppy.zone'
+        : 'http://localhost:3001';
+    this.socket = io(host)
       .on('datachange', data => {
         this.setDiagramModel(data);
       })
