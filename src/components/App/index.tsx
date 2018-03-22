@@ -36,7 +36,7 @@ class App extends React.Component {
 
     // TODO very dirty hack to workaround missing events in storm-diagrams
     if (window) {
-      window.addEventListener('mouseup', () => {
+      const sendDataToServer = () => {
         setTimeout(() => {
           if (this.socket) {
             const newData = this.state.engine
@@ -45,7 +45,11 @@ class App extends React.Component {
             this.socket.emit('datachange', newData);
           }
         }, 10);
-      });
+      };
+
+      ['mouseup', 'keyup'].forEach(event =>
+        window.addEventListener(event, sendDataToServer)
+      );
     }
   }
 
