@@ -9,8 +9,23 @@
     display: block;
     text-align: center;
     color: #ffd800;
+    overflow: hidden;
     .level {
       font-size: 11px;
+      display: block;
+    }
+    input {
+      width: 100%;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      text-align: inherit;
+      background-color: rgba(255, 255, 255, 0.3);
+      font: inherit; /* inherit all font styles from parent element, so it looks like real inline editing */
+      color: inherit;
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -48,7 +63,7 @@
     fill: #ffd800;
     position: absolute;
     left: 50%;
-    top: 55%;
+    top: 65%;
     transform: translateX(-50%) translateY(-50%);
     height: 40%;
     width: 40%;

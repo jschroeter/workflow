@@ -15,7 +15,10 @@ export interface TaskNodeWidgetProps {
   engine: engine;
 }
 
-export interface TaskNodeWidgetState {}
+export interface TaskNodeWidgetState {
+  editMode: boolean;
+  nodeName: string;
+}
 
 export class TaskNodeWidget extends React.Component<
   TaskNodeWidgetProps,
@@ -28,7 +31,10 @@ export class TaskNodeWidget extends React.Component<
 
   constructor(props: TaskNodeWidgetProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      editMode: false,
+      nodeName: ''
+    };
   }
 
   cloneSelected = () => {
@@ -59,6 +65,38 @@ export class TaskNodeWidget extends React.Component<
     this.props.engine.repaintCanvas();
   };
 
+  handleNameDoubleClick = () => {
+    this.setState({
+      editMode: true,
+      nodeName: this.props.node.name
+    });
+  };
+
+  handleNameChange = e => {
+    this.setState({
+      nodeName: e.target.value
+    });
+  };
+
+  handleNameKeyUp = e => {
+    // save on enter
+    if (e.keyCode === 13) {
+      this.handleNameBlur(e);
+    }
+
+    // prevent event bubbeling for backspace and delete keys, otherwise Node gets deleted
+    if (e.keyCode === 8 || e.keyCode === 46) {
+      e.stopPropagation();
+    }
+  };
+
+  handleNameBlur = e => {
+    this.props.node.name = e.target.value;
+    this.setState({
+      editMode: false
+    });
+  };
+
   render() {
     return (
       <div className={'task-node'}>
@@ -67,7 +105,24 @@ export class TaskNodeWidget extends React.Component<
         <PortWidget name="right" node={this.props.node} />
         <PortWidget name="bottom" node={this.props.node} />
         <div className="title">
-          Task <span className="level">(Level {this.props.node.level})</span>
+          {this.state.editMode ? (
+            <input
+              onChange={this.handleNameChange}
+              onKeyUp={this.handleNameKeyUp}
+              onBlur={this.handleNameBlur}
+              value={this.state.nodeName}
+              onFocus={input => input && input.target.select()}
+              ref={input => input && input.focus()}
+            />
+          ) : (
+            <span
+              onDoubleClick={this.handleNameDoubleClick}
+              title={this.props.node.name}
+            >
+              {this.props.node.name}
+            </span>
+          )}
+          <span className="level">(Level {this.props.node.level})</span>
         </div>
         <svg
           viewBox="0 0 16 16"

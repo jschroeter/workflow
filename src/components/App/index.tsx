@@ -96,6 +96,9 @@ class App extends React.Component {
               <strong>Select multiple</strong>: Hold shift and use mouse
             </li>
             <li>
+              <strong>Edit name</strong>: Double click node name to edit
+            </li>
+            <li>
               <strong>Delete</strong>: Select nodes and hit 'delete' on your
               keyboard
             </li>

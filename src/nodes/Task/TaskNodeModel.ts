@@ -5,14 +5,16 @@ import * as _ from 'lodash';
 export class TaskNodeModel extends NodeModel {
   level: number;
   icon: string;
+  name: string;
 
-  constructor(level: number = 1) {
+  constructor(level: number = 1, name: string = 'Task') {
     super('task');
     this.addPort(new TaskPortModel('top'));
     this.addPort(new TaskPortModel('left'));
     this.addPort(new TaskPortModel('bottom'));
     this.addPort(new TaskPortModel('right'));
     this.level = level;
+    this.name = name;
     this.setIcon();
   }
 
@@ -20,12 +22,14 @@ export class TaskNodeModel extends NodeModel {
     super.deSerialize(object, engine);
     this.icon = object.icon;
     this.level = object.level;
+    this.name = object.name;
   }
 
   serialize() {
     return _.merge(super.serialize(), {
       icon: this.icon,
-      level: this.level
+      level: this.level,
+      name: this.name
     });
   }
 
