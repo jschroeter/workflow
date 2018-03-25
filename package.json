@@ -24,6 +24,9 @@
   "dependencies": {
     "gh-pages": "^1.1.0",
     "octicons": "^7.1.0",
+    "pouchdb": "^6.4.3",
+    "pouchdb-find": "^6.4.3",
+    "pouchdb-upsert": "^2.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts-ts": "2.13.0",

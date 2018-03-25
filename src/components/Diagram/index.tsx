@@ -45,10 +45,13 @@ export default class Diagram extends React.Component<
     engine.registerNodeFactory(new TaskNodeFactory());
 
     const model = new DiagramModel();
+
+    /*
     const firstNode = new TaskNodeModel();
     firstNode.setPosition(250, 100);
-
     model.addAll(firstNode);
+    */
+
     engine.setDiagramModel(model);
 
     this.setState({ engine });
